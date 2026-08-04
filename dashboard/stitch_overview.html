@@ -1,0 +1,549 @@
+<!DOCTYPE html><html class="dark" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>LogIntel BERT/LLM - Overview Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "outline": "#909097",
+                      "on-error-container": "#ffdad6",
+                      "inverse-primary": "#565e74",
+                      "on-secondary-fixed": "#00201c",
+                      "background": "#051424",
+                      "tertiary-fixed": "#e1e0ff",
+                      "primary-fixed": "#dae2fd",
+                      "primary-container": "#0f172a",
+                      "outline-variant": "#45464d",
+                      "on-secondary-container": "#004d44",
+                      "surface-bright": "#2c3a4c",
+                      "surface-container-high": "#1c2b3c",
+                      "primary": "#bec6e0",
+                      "on-tertiary": "#1000a9",
+                      "on-tertiary-fixed": "#07006c",
+                      "on-surface": "#d4e4fa",
+                      "on-primary": "#283044",
+                      "on-surface-variant": "#c6c6cd",
+                      "tertiary": "#c0c1ff",
+                      "surface-container-lowest": "#010f1f",
+                      "surface-dim": "#051424",
+                      "surface-variant": "#273647",
+                      "inverse-surface": "#d4e4fa",
+                      "surface-tint": "#bec6e0",
+                      "primary-fixed-dim": "#bec6e0",
+                      "tertiary-container": "#050060",
+                      "surface-container-low": "#0d1c2d",
+                      "on-error": "#690005",
+                      "on-primary-container": "#798098",
+                      "secondary-fixed-dim": "#3cddc7",
+                      "error": "#ffb4ab",
+                      "surface-container": "#122131",
+                      "on-primary-fixed-variant": "#3f465c",
+                      "on-tertiary-fixed-variant": "#2f2ebe",
+                      "tertiary-fixed-dim": "#c0c1ff",
+                      "on-primary-fixed": "#131b2e",
+                      "on-secondary-fixed-variant": "#005047",
+                      "secondary-container": "#03c6b2",
+                      "on-tertiary-container": "#6d70fb",
+                      "secondary-fixed": "#62fae3",
+                      "on-secondary": "#003731",
+                      "surface": "#051424",
+                      "error-container": "#93000a",
+                      "secondary": "#44e2cd",
+                      "on-background": "#d4e4fa",
+                      "inverse-on-surface": "#233143",
+                      "surface-container-highest": "#273647"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "input-padding-y": "8px",
+                      "container-padding": "24px",
+                      "input-padding-x": "12px",
+                      "grid-gutter": "20px",
+                      "base": "4px",
+                      "stack-gap": "16px"
+              },
+              "fontFamily": {
+                      "code-md": [
+                              "JetBrains Mono"
+                      ],
+                      "label-caps": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Inter"
+                      ],
+                      "headline-sm": [
+                              "Inter"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "display-lg": [
+                              "Inter"
+                      ],
+                      "code-sm": [
+                              "JetBrains Mono"
+                      ],
+                      "body-sm": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "code-md": [
+                              "13px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-caps": [
+                              "11px",
+                              {
+                                      "lineHeight": "12px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-sm": [
+                              "18px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "display-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "code-sm": [
+                              "11px",
+                              {
+                                      "lineHeight": "14px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        body {
+            background-color: #051424; /* surface */
+            color: #d4e4fa; /* on-surface */
+        }
+        
+        /* Custom scrollbar for data dense areas */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #273647; /* surface-variant */
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #45464d; /* outline-variant */
+        }
+
+        /* Chart placeholder animations */
+        @keyframes pulse-opacity {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 0.5; }
+        }
+        
+        .bar-anim {
+            animation: pulse-opacity 3s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md antialiased overflow-hidden">
+<!-- TopAppBar -->
+<header class="fixed top-0 right-0 left-64 z-50 flex justify-between items-center px-container-padding h-16 bg-surface-dim dark:bg-surface-dim border-b border-outline-variant dark:border-outline-variant flat no shadows font-label-caps text-label-caps focus-within:ring-2 focus-within:ring-tertiary">
+<div class="flex items-center gap-6">
+<h1 class="font-headline-md text-headline-md font-extrabold text-on-surface dark:text-on-surface">LogIntel BERT/LLM</h1>
+<nav class="hidden md:flex space-x-6">
+<!-- Navigation Links -->
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary transition-opacity" href="#">Models</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary transition-opacity" href="#">Datasets</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary transition-opacity" href="#">Exports</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<!-- Search Bar: on_left (simplified as icon for space here) -->
+<button class="text-on-surface-variant hover:text-primary transition-colors p-2 rounded-full hover:bg-surface-variant">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+</button>
+<!-- Trailing Icon Actions -->
+<button class="text-on-surface-variant hover:text-primary transition-colors p-2 rounded-full hover:bg-surface-variant flex items-center justify-center" title="Toggle Theme">
+  <span class="material-symbols-outlined" data-icon="dark_mode">dark_mode</span>
+</button><button class="text-on-surface-variant hover:text-primary transition-colors p-2 rounded-full hover:bg-surface-variant relative">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 bg-secondary rounded-full"></span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors p-2 rounded-full hover:bg-surface-variant">
+<span class="material-symbols-outlined" data-icon="wifi_tethering">wifi_tethering</span>
+</button>
+<!-- Trailing Primary Action -->
+<button class="ml-4 bg-[#2DD4BF] text-[#0F172A] px-4 py-2 rounded font-label-caps text-label-caps hover:bg-[#14B8A6] transition-colors">
+                Deploy Model
+            </button>
+<!-- Profile Image -->
+<div class="ml-2 w-8 h-8 rounded-full overflow-hidden border border-outline-variant flex-shrink-0">
+<img alt="Administrator Avatar" class="w-full h-full object-cover" data-alt="A minimalist, professional administrator avatar portrait in a highly technical, dark mode environment. The lighting is cool and analytical, with soft rim light highlighting a silhouette against a deep slate background. The style is modern corporate, precise, and understated, fitting for a sophisticated instrument panel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjv1Bvmsr6TcxbRX1i1k4tbAcrfHkOX6OG_cPeHdRsVzT-SzEADFEWLXw3HAOVJUB5O01HyvnIfcs6gR48tJuRQ47VamYZRg0a2F2WHUoJH3PmBhLs1wR9aHW6mwrksXwis15STLRp3AECC2gr67DAMV-vUZcMozI2AIMYAHDh3P60PTcmqBK3P4XM43CNMvUS_frZqhCPCMfV9AsAglatRuCgGxFjASrlgWVntQo684pg5aDONWoa">
+</div>
+</div>
+</header>
+<!-- SideNavBar -->
+<nav class="fixed left-0 top-0 h-full flex flex-col w-64 bg-surface-container-lowest dark:bg-surface-container-lowest border-r border-outline-variant dark:border-outline-variant flat no shadows font-body-md text-body-md z-40"><!-- Header Info -->
+<div class="p-6 border-b border-outline-variant/30 flex flex-col gap-3">
+<div class="w-12 h-12 rounded bg-surface-variant flex items-center justify-center border border-outline-variant overflow-hidden">
+<img alt="User profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBdpt-9e4tKfnukANqckaxSSaOcsKKviLmfwTiS9WRlwOlWwD5nwJnsdosxcVaze9_7aJ8O67r5Cly8ULx56ztuuCC_T-dP7W8a1vY0e7KIHM79rZ4RQmGAdf2vGU0zlN50NFs9bLMrxgHuIcQp9xD5an8QuEWaEPkbtHrz0pk6XH5ps0723GxIEdONPWTqiJNDjAxSwdKvvmSGnb0l5pigikItr5Tz7oAM5mDpiU_KF7nKF3am5quX">
+</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm font-bold text-on-surface dark:text-on-surface">BERT Analysis</h2>
+<p class="font-body-sm text-body-sm text-secondary">System Active</p>
+</div>
+<!-- CTA -->
+<button class="mt-2 w-full py-2 px-4 rounded border border-[#334155] text-[#2DD4BF] hover:bg-surface-variant transition-colors font-label-caps text-label-caps">
+                Ingest Logs
+            </button>
+</div>
+<!-- Main Tabs -->
+<div class="flex-1 py-4 overflow-y-auto">
+<ul class="space-y-1 px-3">
+<!-- Overview: ACTIVE -->
+<li class="">
+<a class="flex items-center gap-3 px-3 py-2 rounded-md text-secondary dark:text-secondary bg-surface-container-high dark:bg-surface-container-high border-r-2 border-secondary active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="">Overview</span>
+</a>
+</li>
+<!-- Explorer -->
+<li class="">
+<a class="flex items-center gap-3 px-3 py-2 rounded-md text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-variant dark:hover:bg-surface-variant transition-colors active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">list_alt</span>
+<span class="">Explorer</span>
+</a>
+</li>
+<!-- Performance -->
+<li class="">
+<a class="flex items-center gap-3 px-3 py-2 rounded-md text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-variant dark:hover:bg-surface-variant transition-colors active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="">Performance</span>
+</a>
+</li>
+<!-- Detail -->
+<li class="">
+<a class="flex items-center gap-3 px-3 py-2 rounded-md text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-variant dark:hover:bg-surface-variant transition-colors active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">description</span>
+<span class="">Detail</span>
+</a>
+</li>
+</ul>
+</div>
+<!-- Footer Tabs -->
+<div class="p-4 border-t border-outline-variant/30">
+<ul class="space-y-1">
+<li class="">
+<a class="flex items-center gap-3 px-3 py-2 rounded-md text-on-surface-variant hover:bg-surface-variant transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="">Settings</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center gap-3 px-3 py-2 rounded-md text-on-surface-variant hover:bg-surface-variant transition-colors" href="#">
+<span class="material-symbols-outlined">help_outline</span>
+<span class="">Support</span>
+</a>
+</li>
+</ul>
+</div></nav>
+<!-- Main Content Canvas -->
+<main class="ml-64 mt-16 p-container-padding h-[calc(100vh-64px)] overflow-y-auto">
+<div class="max-w-7xl mx-auto space-y-grid-gutter">
+<!-- Key Metric Cards Grid (Bento Style) -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-grid-gutter">
+<!-- Metric 1: Total Logs -->
+<div class="bg-[#1E293B] border border-[#334155] rounded-lg flex flex-col justify-between hover:border-outline-variant transition-colors relative group p-6">
+<div class="absolute inset-0 bg-[#6366F1] opacity-0 group-hover:opacity-5 rounded-lg transition-opacity"></div>
+<div>
+<h3 class="font-label-caps text-label-caps text-on-surface-variant mb-2 tracking-wider">TOTAL LOGS PROCESSED</h3>
+<div class="font-display-lg text-display-lg text-on-surface">1.24B</div>
+</div>
+<div class="mt-4 flex items-center gap-2 text-secondary">
+<span class="material-symbols-outlined text-[16px]" data-icon="trending_up">trending_up</span>
+<span class="font-code-sm text-code-sm">+14.2% (24h)</span>
+</div>
+</div>
+<!-- Metric 2: Classification Rate -->
+<div class="bg-[#1E293B] border border-[#334155] rounded-lg flex flex-col justify-between hover:border-outline-variant transition-colors relative group p-6">
+<div class="absolute inset-0 bg-[#6366F1] opacity-0 group-hover:opacity-5 rounded-lg transition-opacity"></div>
+<div>
+<h3 class="font-label-caps text-label-caps text-on-surface-variant mb-2 tracking-wider">CLASSIFICATION RATE</h3>
+<div class="font-display-lg text-display-lg text-on-surface">98.4%</div>
+</div>
+<div class="mt-4 w-full h-1 bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-[98.4%]"></div>
+</div>
+<div class="mt-2 text-right font-code-sm text-code-sm text-on-surface-variant">Target: 95%</div>
+</div>
+<!-- Metric 3: Avg Confidence -->
+<div class="bg-[#1E293B] border border-[#334155] rounded-lg flex flex-col justify-between hover:border-outline-variant transition-colors relative group p-6">
+<div class="absolute inset-0 bg-[#6366F1] opacity-0 group-hover:opacity-5 rounded-lg transition-opacity"></div>
+<div>
+<h3 class="font-label-caps text-label-caps text-on-surface-variant mb-2 tracking-wider">MODEL CONFIDENCE (AVG)</h3>
+<div class="font-display-lg text-display-lg text-[#c0c1ff]">0.924</div>
+</div>
+<div class="mt-4">
+<div class="flex justify-between text-code-sm font-code-sm mb-1 text-on-surface-variant">
+<span class="">LLM</span>
+<span class="">BERT</span>
+</div>
+<div class="flex h-[4px] bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full bg-[#6366F1] w-[45%]"></div>
+<div class="h-full bg-secondary w-[55%]"></div>
+</div>
+</div>
+</div>
+<!-- Metric 4: Model Latency -->
+<div class="bg-[#1E293B] border border-[#334155] rounded-lg flex flex-col justify-between hover:border-outline-variant transition-colors relative group p-6">
+<div class="absolute inset-0 bg-[#6366F1] opacity-0 group-hover:opacity-5 rounded-lg transition-opacity"></div>
+<div>
+<h3 class="font-label-caps text-label-caps text-on-surface-variant mb-2 tracking-wider">INFERENCE LATENCY</h3>
+<div class="font-display-lg text-display-lg text-on-surface flex items-baseline gap-1">
+                            42 <span class="text-body-md font-body-md text-on-surface-variant">ms</span>
+</div>
+</div>
+<div class="mt-4 h-8 flex items-end gap-1 opacity-70">
+<div class="w-1/6 bg-surface-variant h-1/3 rounded-t"></div>
+<div class="w-1/6 bg-surface-variant h-1/2 rounded-t"></div>
+<div class="w-1/6 bg-surface-variant h-full rounded-t"></div>
+<div class="w-1/6 bg-secondary h-1/4 rounded-t"></div>
+<div class="w-1/6 bg-surface-variant h-1/3 rounded-t"></div>
+<div class="w-1/6 bg-surface-variant h-1/2 rounded-t"></div>
+</div>
+</div>
+</div>
+<!-- Visualizations Row -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-grid-gutter h-[400px]">
+<!-- Bar Chart: Logs by Category (Span 2) -->
+<div class="lg:col-span-2 bg-[#1E293B] border border-[#334155] rounded-lg p-6 flex flex-col">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">Logs by Category</h3>
+<div class="flex gap-2">
+<span class="px-2 py-1 bg-surface-variant rounded text-code-sm font-code-sm text-on-surface-variant border border-outline-variant">24h</span>
+<span class="px-2 py-1 hover:bg-surface-variant rounded text-code-sm font-code-sm text-outline cursor-pointer transition-colors">7d</span>
+</div>
+</div>
+<!-- Simulated Bar Chart Layout -->
+<div class="flex-1 flex items-end gap-3 relative pb-6 pt-4 border-b border-l border-[#334155] px-2">
+<!-- Y Axis labels -->
+<div class="absolute left-[-30px] bottom-6 top-4 flex flex-col justify-between text-code-sm font-code-sm text-on-surface-variant items-end">
+<span class="">10M</span>
+<span class="">7.5M</span>
+<span class="">5M</span>
+<span class="">2.5M</span>
+</div>
+<!-- Grid lines -->
+<div class="absolute left-0 right-0 top-[20%] border-t border-[#334155] border-dashed opacity-50 z-0"></div>
+<div class="absolute left-0 right-0 top-[45%] border-t border-[#334155] border-dashed opacity-50 z-0"></div>
+<div class="absolute left-0 right-0 top-[70%] border-t border-[#334155] border-dashed opacity-50 z-0"></div>
+<!-- Bars (Categories) -->
+<div class="flex-1 h-full flex items-end justify-center group z-10 relative">
+<div class="w-full max-w-[40px] bg-[#2DD4BF] h-[85%] rounded-t-sm opacity-90 hover:opacity-100 transition-opacity bar-anim" style="animation-delay: 0s;"></div>
+<span class="absolute -bottom-6 text-code-sm font-code-sm text-on-surface-variant whitespace-nowrap overflow-hidden text-ellipsis w-full text-center">INFO</span>
+</div>
+<div class="flex-1 h-full flex items-end justify-center group z-10 relative">
+<div class="w-full max-w-[40px] bg-[#6366F1] h-[65%] rounded-t-sm opacity-90 hover:opacity-100 transition-opacity bar-anim" style="animation-delay: 0.2s;"></div>
+<span class="absolute -bottom-6 text-code-sm font-code-sm text-on-surface-variant">DEBUG</span>
+</div>
+<div class="flex-1 h-full flex items-end justify-center group z-10 relative">
+<div class="w-full max-w-[40px] bg-[#F59E0B] h-[30%] rounded-t-sm opacity-90 hover:opacity-100 transition-opacity bar-anim" style="animation-delay: 0.4s;"></div>
+<span class="absolute -bottom-6 text-code-sm font-code-sm text-on-surface-variant">WARN</span>
+</div>
+<div class="flex-1 h-full flex items-end justify-center group z-10 relative">
+<div class="w-full max-w-[40px] bg-[#EF4444] h-[15%] rounded-t-sm opacity-90 hover:opacity-100 transition-opacity bar-anim" style="animation-delay: 0.6s;"></div>
+<span class="absolute -bottom-6 text-code-sm font-code-sm text-on-surface-variant">ERROR</span>
+</div>
+<div class="flex-1 h-full flex items-end justify-center group z-10 relative">
+<div class="w-full max-w-[40px] bg-outline-variant h-[5%] rounded-t-sm opacity-90 hover:opacity-100 transition-opacity bar-anim" style="animation-delay: 0.8s;"></div>
+<span class="absolute -bottom-6 text-code-sm font-code-sm text-on-surface-variant">FATAL</span>
+</div>
+</div>
+</div>
+<!-- Sunburst/Donut Chart Placeholder: Classification Dist (Span 1) -->
+<div class="lg:col-span-1 bg-[#1E293B] border border-[#334155] rounded-lg p-6 flex flex-col items-center justify-center relative">
+<h3 class="absolute top-6 left-6 font-headline-sm text-headline-sm font-bold text-on-surface">Model Delegation</h3>
+<!-- Abstract representation of Sunburst using CSS -->
+<div class="relative w-48 h-48 mt-8">
+<!-- Outer ring (BERT vs LLM) -->
+<svg class="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
+<!-- BERT segment (70%) -->
+<circle cx="50" cy="50" fill="transparent" r="40" stroke="#2DD4BF" stroke-dasharray="175.9" stroke-dashoffset="0" stroke-width="12"></circle>
+<!-- LLM segment (30%) -->
+<circle class="stroke-[#6366F1]" cx="50" cy="50" fill="transparent" r="40" stroke="#6366F1" stroke-dasharray="175.9" stroke-dashoffset="175.9" stroke-dashoffset-target="123.13" stroke-width="12" style="stroke-dashoffset: 123.13px;"></circle>
+<!-- Inner ring (Subcategories) - Simulated -->
+<circle cx="50" cy="50" fill="transparent" r="26" stroke="#161E2E" stroke-width="8"></circle>
+<circle cx="50" cy="50" fill="transparent" opacity="0.7" r="26" stroke="#44e2cd" stroke-dasharray="163" stroke-dashoffset="40" stroke-width="8"></circle>
+<circle cx="50" cy="50" fill="transparent" opacity="0.7" r="26" stroke="#c0c1ff" stroke-dasharray="163" stroke-dashoffset="130" stroke-width="8"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="font-display-lg text-display-lg text-on-surface">70%</span>
+<span class="font-label-caps text-label-caps text-secondary">BERT</span>
+</div>
+</div>
+<div class="w-full mt-8 flex justify-center gap-6 font-code-sm text-code-sm">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-sm bg-[#2DD4BF]"></div>
+<span class="text-on-surface-variant">BERT Core</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-sm bg-[#6366F1]"></div>
+<span class="text-on-surface-variant">LLM Fallback</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Recent Anomalies Table (Compact Log View) -->
+<div class="bg-[#1E293B] border border-[#334155] rounded-lg overflow-hidden flex flex-col">
+<div class="p-4 border-b border-[#334155] flex justify-between items-center bg-[#161E2E]">
+<div>
+<h3 class="font-label-caps text-label-caps text-on-surface-variant tracking-wider">ANOMALY DETECTION</h3>
+<p class="font-body-sm text-body-sm text-on-surface mt-1">High-confidence structural deviations detected in stream.</p>
+</div>
+<button class="text-[#2DD4BF] font-code-sm text-code-sm border border-[#334155] px-3 py-1.5 rounded hover:bg-[#334155] transition-colors">
+                        View All
+                    </button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="font-code-sm text-code-sm text-outline bg-[#0F172A] border-b border-[#334155]">
+<th class="py-2 px-4 font-normal w-32">TIMESTAMP</th>
+<th class="py-2 px-4 font-normal w-24">SEVERITY</th>
+<th class="py-2 px-4 font-normal">MESSAGE PREVIEW</th>
+<th class="py-2 px-4 font-normal w-32">MODEL CONF</th>
+<th class="py-2 px-4 font-normal w-24 text-right">ACTION</th>
+</tr>
+</thead>
+<tbody class="font-code-md text-code-md text-on-surface">
+<!-- Odd Row -->
+<tr class="bg-[#161E2E] border-b border-[#334155]/50 hover:bg-[#1E293B] transition-colors h-[32px]">
+<td class="py-1 px-4 text-on-surface-variant">14:02:11.402</td>
+<td class="py-1 px-4">
+<span class="bg-[#EF4444]/15 text-[#EF4444] px-2 py-0.5 rounded text-[10px] font-bold">CRITICAL</span>
+</td>
+<td class="py-1 px-4 font-code-md truncate max-w-md">
+<span class="text-on-surface">Database connection timeout in <span class="bg-[#6366F1]/20 px-1 rounded text-[#c0c1ff]">auth_service</span> cluster region-us-east</span>
+</td>
+<td class="py-1 px-4 flex items-center gap-2 h-[32px]">
+<div class="w-16 h-[4px] bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full bg-[#6366F1] w-[98%]"></div>
+</div>
+<span class="text-[11px] text-on-surface-variant">.98</span>
+</td>
+<td class="py-1 px-4 text-right">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant hover:text-secondary cursor-pointer" data-icon="open_in_new">open_in_new</span>
+</td>
+</tr>
+<!-- Even Row -->
+<tr class="bg-[#1E293B] border-b border-[#334155]/50 hover:bg-[#273647] transition-colors h-[32px]">
+<td class="py-1 px-4 text-on-surface-variant">14:01:55.912</td>
+<td class="py-1 px-4">
+<span class="bg-[#F59E0B]/15 text-[#F59E0B] px-2 py-0.5 rounded text-[10px] font-bold">WARN</span>
+</td>
+<td class="py-1 px-4 font-code-md truncate max-w-md">
+<span class="text-on-surface">Rate limit approaching for API key <span class="bg-surface-variant px-1 rounded text-outline">pk_live_***</span> (89%)</span>
+</td>
+<td class="py-1 px-4 flex items-center gap-2 h-[32px]">
+<div class="w-16 h-[4px] bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full bg-[#2DD4BF] w-[85%]"></div>
+</div>
+<span class="text-[11px] text-on-surface-variant">.85</span>
+</td>
+<td class="py-1 px-4 text-right">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant hover:text-secondary cursor-pointer" data-icon="open_in_new">open_in_new</span>
+</td>
+</tr>
+<!-- Odd Row -->
+<tr class="bg-[#161E2E] border-b border-[#334155]/50 hover:bg-[#1E293B] transition-colors h-[32px]">
+<td class="py-1 px-4 text-on-surface-variant">13:58:22.100</td>
+<td class="py-1 px-4">
+<span class="bg-[#EF4444]/15 text-[#EF4444] px-2 py-0.5 rounded text-[10px] font-bold">ERROR</span>
+</td>
+<td class="py-1 px-4 font-code-md truncate max-w-md">
+<span class="text-on-surface">NullPointerException in <span class="bg-[#6366F1]/20 px-1 rounded text-[#c0c1ff]">PaymentProcessor.java:420</span></span>
+</td>
+<td class="py-1 px-4 flex items-center gap-2 h-[32px]">
+<div class="w-16 h-[4px] bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full bg-[#6366F1] w-[91%]"></div>
+</div>
+<span class="text-[11px] text-on-surface-variant">.91</span>
+</td>
+<td class="py-1 px-4 text-right">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant hover:text-secondary cursor-pointer" data-icon="open_in_new">open_in_new</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</main>
+
+
+</body></html>

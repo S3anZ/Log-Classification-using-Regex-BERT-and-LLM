@@ -1,0 +1,342 @@
+<!DOCTYPE html><html class="dark" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Classification Detail - LogIntel BERT/LLM</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "outline": "#909097",
+                    "on-error-container": "#ffdad6",
+                    "inverse-primary": "#565e74",
+                    "on-secondary-fixed": "#00201c",
+                    "background": "#051424",
+                    "tertiary-fixed": "#e1e0ff",
+                    "primary-fixed": "#dae2fd",
+                    "primary-container": "#0f172a",
+                    "outline-variant": "#45464d",
+                    "on-secondary-container": "#004d44",
+                    "surface-bright": "#2c3a4c",
+                    "surface-container-high": "#1c2b3c",
+                    "primary": "#bec6e0",
+                    "on-tertiary": "#1000a9",
+                    "on-tertiary-fixed": "#07006c",
+                    "on-surface": "#d4e4fa",
+                    "on-primary": "#283044",
+                    "on-surface-variant": "#c6c6cd",
+                    "tertiary": "#c0c1ff",
+                    "surface-container-lowest": "#010f1f",
+                    "surface-dim": "#051424",
+                    "surface-variant": "#273647",
+                    "inverse-surface": "#d4e4fa",
+                    "surface-tint": "#bec6e0",
+                    "primary-fixed-dim": "#bec6e0",
+                    "tertiary-container": "#050060",
+                    "surface-container-low": "#0d1c2d",
+                    "on-error": "#690005",
+                    "on-primary-container": "#798098",
+                    "secondary-fixed-dim": "#3cddc7",
+                    "error": "#ffb4ab",
+                    "surface-container": "#122131",
+                    "on-primary-fixed-variant": "#3f465c",
+                    "on-tertiary-fixed-variant": "#2f2ebe",
+                    "tertiary-fixed-dim": "#c0c1ff",
+                    "on-primary-fixed": "#131b2e",
+                    "on-secondary-fixed-variant": "#005047",
+                    "secondary-container": "#03c6b2",
+                    "on-tertiary-container": "#6d70fb",
+                    "secondary-fixed": "#62fae3",
+                    "on-secondary": "#003731",
+                    "surface": "#051424",
+                    "error-container": "#93000a",
+                    "secondary": "#44e2cd",
+                    "on-background": "#d4e4fa",
+                    "inverse-on-surface": "#233143",
+                    "surface-container-highest": "#273647"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "input-padding-y": "8px",
+                    "container-padding": "24px",
+                    "input-padding-x": "12px",
+                    "grid-gutter": "20px",
+                    "base": "4px",
+                    "stack-gap": "16px"
+            },
+            "fontFamily": {
+                    "code-md": ["JetBrains Mono"],
+                    "label-caps": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "headline-sm": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "code-sm": ["JetBrains Mono"],
+                    "body-sm": ["Inter"]
+            },
+            "fontSize": {
+                    "code-md": ["13px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "label-caps": ["11px", {"lineHeight": "12px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "headline-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "code-sm": ["11px", {"lineHeight": "14px", "fontWeight": "400"}],
+                    "body-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        /* Base styles */
+        body {
+            background-color: theme('colors.background');
+            color: theme('colors.on-background');
+        }
+        
+        /* Subtle interactive lift for cards */
+        .interactive-card {
+            transition: all 0.2s ease-in-out;
+        }
+        .interactive-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px -2px rgba(99, 102, 241, 0.15);
+            border-color: theme('colors.outline');
+        }
+
+        /* Token Highlighting Animation */
+        @keyframes pulse-attention {
+            0% { opacity: 0.8; }
+            50% { opacity: 1; }
+            100% { opacity: 0.8; }
+        }
+        .attention-high { background-color: rgba(68, 226, 205, 0.25); border-bottom: 2px solid theme('colors.secondary'); animation: pulse-attention 2s infinite; }
+        .attention-med { background-color: rgba(192, 193, 255, 0.15); border-bottom: 1px solid theme('colors.tertiary'); }
+        .attention-low { background-color: rgba(212, 228, 250, 0.05); }
+    </style>
+</head>
+<body class="antialiased min-h-screen font-body-md text-body-md overflow-x-hidden" style="background: linear-gradient(rgb(1, 15, 31) 0%, rgb(5, 20, 36) 100%);">
+<!-- SideNavBar -->
+<nav class="fixed left-0 top-0 h-full flex flex-col docked w-64 border-r border-outline-variant dark:border-outline-variant bg-surface-container-lowest dark:bg-surface-container-lowest flat no shadows z-50"><!-- Header -->
+<div class="p-6 border-b border-outline-variant dark:border-outline-variant flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-variant overflow-hidden flex-shrink-0 border border-outline">
+<img class="w-full h-full object-cover" alt="System Avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbJtmPGqmp0XQauyME31rWmaQAZ1mBqHMBL7MFyHOYhbakpT-E1gxCbpVNC8MeiTlk9Yd-gGq7LCw9-jFrGdQ2OniBz7Lu52zf2-P5E3Hu6511bV5w7UBEGXuntzpws44VFa30S4fwnmNw0Ue8EUnXCalw5zEaS86-7qglJzUtOiRjjSeddFtftWevtyCQr-9DK5CC-BtGuR1co7uD0f4ygPYvfOdm8SgJz_klceVj0wH0TJy0Z-c6">
+</div>
+<div>
+<h1 class="font-headline-sm text-headline-sm font-bold text-on-surface dark:text-on-surface">BERT Analysis</h1>
+<p class="font-body-sm text-body-sm text-secondary dark:text-secondary mt-1">System Active</p>
+</div>
+</div>
+<!-- Navigation Links -->
+<div class="flex-1 overflow-y-auto py-4">
+<ul class="space-y-1 px-3">
+<li class="">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-variant dark:hover:bg-surface-variant transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-secondary transition-colors">dashboard</span>
+<span class="font-body-md text-body-md">Overview</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-variant dark:hover:bg-surface-variant transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-secondary transition-colors">list_alt</span>
+<span class="font-body-md text-body-md">Explorer</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-variant dark:hover:bg-surface-variant transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-secondary transition-colors">analytics</span>
+<span class="font-body-md text-body-md">Performance</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-secondary dark:text-secondary bg-surface-container-high dark:bg-surface-container-high border-r-2 border-secondary scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">description</span>
+<span class="font-body-md text-body-md font-medium">Detail</span>
+</a>
+</li>
+</ul>
+</div>
+<!-- Footer Area -->
+<div class="p-4 border-t border-outline-variant dark:border-outline-variant space-y-4">
+<button class="w-full py-2 px-4 rounded bg-surface-variant border border-outline-variant text-on-surface font-body-sm text-body-sm hover:border-secondary transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[16px]">upload</span>
+Ingest Logs
+</button>
+<ul class="space-y-1">
+<li class="">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-variant dark:hover:bg-surface-variant transition-colors" href="#">
+<span class="material-symbols-outlined text-[18px]">settings</span>
+<span class="font-body-sm text-body-sm">Settings</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-variant dark:hover:bg-surface-variant transition-colors" href="#">
+<span class="material-symbols-outlined text-[18px]">help_outline</span>
+<span class="font-body-sm text-body-sm">Support</span>
+</a>
+</li>
+</ul>
+</div></nav>
+<!-- TopAppBar -->
+<header class="fixed top-0 right-0 left-64 z-40 flex justify-between items-center px-container h-16 docked full-width border-b border-outline-variant dark:border-outline-variant bg-surface-dim dark:bg-surface-dim flat no shadows">
+<!-- Left: Brand & Search -->
+<div class="flex items-center gap-8">
+<span class="font-headline-md text-headline-md font-extrabold text-on-surface dark:text-on-surface tracking-tight">LogIntel BERT/LLM</span>
+<!-- Search Bar -->
+<div class="relative focus-within:ring-2 focus-within:ring-tertiary rounded-full transition-shadow">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant" data-icon="search">search</span>
+<input class="w-64 bg-surface-container rounded-full border border-outline-variant py-input-padding-y pl-10 pr-input-padding-x font-body-sm text-body-sm text-on-surface focus:outline-none focus:border-secondary transition-colors" placeholder="Search parameters..." type="text">
+</div>
+</div>
+<!-- Center: Navigation Links (Inactive contextual flow) -->
+<nav class="hidden lg:flex items-center gap-6">
+<a class="font-label-caps text-label-caps text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary transition-opacity" href="#">Models</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary transition-opacity" href="#">Datasets</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary transition-opacity" href="#">Exports</a>
+</nav>
+<!-- Right: Actions -->
+<div class="flex items-center gap-4">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors" aria-label="Toggle theme">
+  <span class="material-symbols-outlined" data-icon="light_mode">light_mode</span>
+</button><button class="p-2 text-on-surface-variant hover:text-primary transition-colors relative">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="wifi_tethering">wifi_tethering</span>
+</button>
+<button class="ml-2 bg-secondary text-on-secondary px-4 py-2 rounded font-body-sm text-body-sm font-semibold hover:bg-secondary-fixed transition-colors">
+                Deploy Model
+            </button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-[80px] pl-64 p-container w-full min-h-screen">
+<!-- Header Section -->
+<div class="mb-8 flex justify-between items-end">
+<div>
+<div class="flex items-center gap-3 mb-2">
+<span class="px-2 py-0.5 rounded bg-error-container/20 border border-error-container text-error font-code-sm text-code-sm uppercase">Severity: Critical</span>
+<span class="px-2 py-0.5 rounded bg-surface-variant text-on-surface-variant font-code-sm text-code-sm">ID: LOG-993-AX-821</span>
+</div>
+<h2 class="font-display-lg text-display-lg text-on-surface">Classification Detail</h2>
+</div>
+<div class="flex items-center gap-3 text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[18px]" data-icon="schedule">schedule</span>
+                2023-10-27T08:42:15Z
+            </div>
+</div>
+<!-- 12-Column Grid Layout -->
+<div class="grid grid-cols-12 gap-grid-gutter">
+<!-- Left Column: Raw Log & BERT Attention (8 columns) -->
+<div class="col-span-12 xl:col-span-8 flex flex-col gap-stack-gap">
+<!-- Attention Viewer Card -->
+<div class="bg-surface-container rounded-lg border border-outline-variant p-6 interactive-card relative overflow-hidden flex flex-col h-full">
+<!-- Decorative Background element -->
+<div class="absolute top-0 right-0 w-64 h-64 bg-secondary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+<div class="flex justify-between items-center mb-4 border-b border-outline-variant pb-3 z-10">
+<div>
+<span class="font-label-caps text-label-caps text-on-surface-variant block mb-1">RAW LOG SEQUENCE</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">BERT Attention Heatmap</h3>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded bg-[rgba(68,226,205,0.25)] border border-secondary block"></span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mr-3">High</span>
+<span class="w-3 h-3 rounded bg-[rgba(192,193,255,0.15)] border border-tertiary block"></span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Med</span>
+</div>
+</div>
+<!-- Monospace Viewer -->
+<div class="bg-surface-container-lowest rounded border border-outline-variant p-4 overflow-x-auto font-code-md text-code-md text-on-surface leading-relaxed relative z-10 h-64 flex-1">
+<code>
+                            [2023-10-27 08:42:14.992] <span class="attention-low">INFO</span> [req-a7b2] - Incoming request to <span class="attention-med">/api/v1/users/auth</span> from <span class="attention-high text-secondary">192.168.1.105</span>.<br>
+                            [2023-10-27 08:42:15.011] <span class="attention-low">DEBUG</span> [req-a7b2] - Validating JWT signature against keystore.<br>
+                            [2023-10-27 08:42:15.015] <span class="attention-high text-secondary font-semibold">ERROR</span> [req-a7b2] - <span class="attention-high">Signature verification failed</span>. Reason: <span class="attention-med">Token expired or manipulated</span>.<br>
+                            [2023-10-27 08:42:15.018] <span class="attention-low">WARN</span> [req-a7b2] - Generating response payload <span class="attention-med">HTTP 401 Unauthorized</span>.<br>
+                            [2023-10-27 08:42:15.020] <span class="attention-high text-secondary">FATAL</span> [auth-svc-09] - <span class="attention-high">Consecutive failures detected from IP</span>. Triggering <span class="attention-med">rate-limit backoff</span>.
+                        </code>
+</div>
+</div>
+</div>
+<!-- Right Column: LLM Reasoning & Metadata (4 columns) -->
+<div class="col-span-12 xl:col-span-4 flex flex-col gap-stack-gap">
+<!-- LLM Reasoning Card -->
+<div class="bg-surface-container rounded-lg border border-outline-variant p-6 interactive-card">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-tertiary" data-icon="psychology">psychology</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">LLM EXPLAINABILITY</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-3">Authentication Anomaly</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">
+                        The model flagged this sequence due to the rapid succession of a signature verification failure leading directly to a FATAL rate-limit trigger. The high attention weights on <span class="text-secondary font-code-md">192.168.1.105</span> and <span class="text-tertiary font-code-md">Signature verification failed</span> indicate a likely credential stuffing or token manipulation attempt.
+                    </p>
+<!-- Confidence Meter -->
+<div>
+<div class="flex justify-between items-center mb-2">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Model Confidence</span>
+<span class="font-code-sm text-code-sm text-on-surface">94.2%</span>
+</div>
+<div class="w-full bg-surface-container-highest rounded-full h-1 overflow-hidden">
+<div class="bg-secondary h-1 rounded-full" style="width: 94.2%"></div>
+</div>
+</div>
+</div>
+<!-- Extracted Entities Card -->
+<div class="bg-surface-container rounded-lg border border-outline-variant p-6 interactive-card flex-1">
+<span class="font-label-caps text-label-caps text-on-surface-variant block mb-4">EXTRACTED METADATA</span>
+<ul class="space-y-3">
+<li class="flex items-center justify-between border-b border-outline-variant/50 pb-2">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]" data-icon="computer">computer</span>
+<span class="font-body-sm text-body-sm">Source IP</span>
+</div>
+<span class="font-code-md text-code-md text-secondary">192.168.1.105</span>
+</li>
+<li class="flex items-center justify-between border-b border-outline-variant/50 pb-2">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]" data-icon="tag">tag</span>
+<span class="font-body-sm text-body-sm">Request ID</span>
+</div>
+<span class="font-code-md text-code-md text-on-surface">req-a7b2</span>
+</li>
+<li class="flex items-center justify-between border-b border-outline-variant/50 pb-2">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]" data-icon="api">api</span>
+<span class="font-body-sm text-body-sm">Endpoint</span>
+</div>
+<span class="font-code-md text-code-md text-on-surface">/api/v1/users/auth</span>
+</li>
+<li class="flex items-center justify-between">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]" data-icon="warning">warning</span>
+<span class="font-body-sm text-body-sm">Error Code</span>
+</div>
+<span class="font-code-md text-code-md text-error">HTTP 401</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</main>
+
+
+</body></html>

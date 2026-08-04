@@ -1,0 +1,114 @@
+timestamp,log_level,source,message,label
+2026-08-04 10:00:01,INFO,AuthService,User authentication successful for UID 10928 from IP 192.168.1.105 via OAuth2,INFO
+2026-08-04 10:00:02,INFO,AuthService,User authentication successful for UID 48192 from IP 10.0.0.42 via OAuth2,INFO
+2026-08-04 10:00:03,INFO,AuthService,User authentication successful for UID 77410 from IP 172.16.0.15 via OAuth2,INFO
+2026-08-04 10:00:04,INFO,AuthService,User authentication successful for UID 33912 from IP 192.168.1.188 via OAuth2,INFO
+2026-08-04 10:00:05,ERROR,PostgreSQL,FATAL: remaining connection slots are reserved for non-replication superuser connections,ERROR
+2026-08-04 10:00:06,ERROR,PostgreSQL,FATAL: remaining connection slots are reserved for non-replication superuser connections,ERROR
+2026-08-04 10:00:07,ERROR,PostgreSQL,FATAL: remaining connection slots are reserved for non-replication superuser connections,ERROR
+2026-08-04 10:00:08,WARNING,PaymentService,Stripe API returned 429 Too Many Requests. Retrying in 1500ms (attempt 2/5),WARNING
+2026-08-04 10:00:09,WARNING,PaymentService,Stripe API returned 429 Too Many Requests. Retrying in 3000ms (attempt 3/5),WARNING
+2026-08-04 10:00:10,WARNING,PaymentService,Stripe API returned 429 Too Many Requests. Retrying in 6000ms (attempt 4/5),WARNING
+2026-08-04 10:00:11,CRITICAL,Kubelet,Node worker-node-04 status changed to NotReady: Pipelined disk pressure threshold exceeded,CRITICAL
+2026-08-04 10:00:12,CRITICAL,Kubelet,Node worker-node-02 status changed to NotReady: Pipelined disk pressure threshold exceeded,CRITICAL
+2026-08-04 10:00:13,CRITICAL,Kubelet,Node worker-node-09 status changed to NotReady: Pipelined disk pressure threshold exceeded,CRITICAL
+2026-08-04 10:00:14,DEBUG,RedisCache,Cache hit for key 'session:user:10928:permissions' [TTL: 3540s],DEBUG
+2026-08-04 10:00:15,DEBUG,RedisCache,Cache hit for key 'session:user:48192:permissions' [TTL: 3200s],DEBUG
+2026-08-04 10:00:16,DEBUG,RedisCache,Cache hit for key 'session:user:77410:permissions' [TTL: 2890s],DEBUG
+2026-08-04 10:00:17,ERROR,SSHD,Failed password for root from 185.220.101.4 port 54122 ssh2: Invalid credentials,ERROR
+2026-08-04 10:00:18,ERROR,SSHD,Failed password for root from 185.220.101.4 port 54125 ssh2: Invalid credentials,ERROR
+2026-08-04 10:00:19,ERROR,SSHD,Failed password for admin from 185.220.101.4 port 54130 ssh2: Invalid credentials,ERROR
+2026-08-04 10:00:20,INFO,OrderProcessor,Successfully processed order #ORD-99482. Sent receipt to user_99@example.com,INFO
+2026-08-04 10:00:21,INFO,OrderProcessor,Successfully processed order #ORD-99483. Sent receipt to user_101@example.com,INFO
+2026-08-04 10:00:22,INFO,OrderProcessor,Successfully processed order #ORD-99484. Sent receipt to user_402@example.com,INFO
+2026-08-04 10:00:23,WARNING,MemoryManager,High memory usage detected: Heap utilization at 87%,WARNING
+2026-08-04 10:00:24,WARNING,MemoryManager,High memory usage detected: Heap utilization at 92%,WARNING
+2026-08-04 10:00:25,WARNING,MemoryManager,High memory usage detected: Heap utilization at 95%,WARNING
+2026-08-04 10:00:26,INFO,NginxAccess,GET /api/v1/products/search?q=wireless+headphones HTTP/1.1 200 4821 45ms,INFO
+2026-08-04 10:00:27,INFO,NginxAccess,GET /api/v1/products/search?q=bluetooth+speaker HTTP/1.1 200 3192 38ms,INFO
+2026-08-04 10:00:28,INFO,NginxAccess,GET /api/v1/products/search?q=usb+keyboard HTTP/1.1 200 5120 52ms,INFO
+2026-08-04 10:00:29,ERROR,DatabasePool,HikariPool-1 - Connection is not available request timed out after 30005ms.,ERROR
+2026-08-04 10:00:30,ERROR,DatabasePool,HikariPool-1 - Connection is not available request timed out after 30000ms.,ERROR
+2026-08-04 10:00:31,CRITICAL,Kernel,Kernel panic - not syncing: Fatal exception in interrupt at eip 00007ff81290,CRITICAL
+2026-08-04 10:00:32,CRITICAL,StorageController,RAID array /dev/md0 degraded: Disk 2 (/dev/sdc) reported read I/O error EIO,CRITICAL
+2026-08-04 10:00:33,INFO,BackupManager,S3 upload completed for DB snapshot s3://backups-prod/2026-08-04/db_dump.sql.gz (14.2GB),INFO
+2026-08-04 10:00:34,CRITICAL,Kernel,Kernel panic - not syncing: Fatal exception in interrupt handler at 0x00007ff89,CRITICAL
+2026-08-04 10:00:35,CRITICAL,Kernel,Kernel panic - not syncing: System fatal exception during interrupt context,CRITICAL
+2026-08-04 10:00:36,CRITICAL,StorageController,RAID array /dev/md1 degraded: Disk 4 (/dev/sdd) reported I/O failure,CRITICAL
+2026-08-04 10:00:37,CRITICAL,StorageController,RAID array /dev/md0 drive failure: Disk 1 failed write verification,CRITICAL
+2026-08-04 10:00:38,CRITICAL,Kernel,Out of memory: Kill process 4819 (java) score 850 or sacrifice child,CRITICAL
+2026-08-04 10:00:39,CRITICAL,Kernel,Out of memory: Kill process 1092 (python3) score 920 or sacrifice child,CRITICAL
+2026-08-04 10:00:40,CRITICAL,EnvironmentHealth,Primary data center core router unreachable: ping timeout 100% loss on 10.0.0.1,CRITICAL
+2026-08-04 10:00:41,CRITICAL,EnvironmentHealth,Secondary data center core router unreachable: ping timeout 100% loss on 10.0.0.2,CRITICAL
+2026-08-04 10:00:42,CRITICAL,PowerSupply,UPS unit 2 battery backup remaining capacity below 15%. Switching to auxiliary generator,CRITICAL
+2026-08-04 10:00:43,CRITICAL,PowerSupply,UPS unit 1 battery backup failure detected. Main feed offline,CRITICAL
+2026-08-04 10:00:44,CRITICAL,SecurityScanner,High severity vulnerability detected in package pydantic CVE-2024-XXXX,CRITICAL
+2026-08-04 10:00:45,CRITICAL,SecurityScanner,High severity vulnerability detected in package openssl CVE-2024-8849,CRITICAL
+2026-08-04 10:00:46,DEBUG,AuthService,Validating JWT token signature against RSA public key kid=auth-key-2026-v1,DEBUG
+2026-08-04 10:00:47,DEBUG,AuthService,Validating JWT token signature against RSA public key kid=auth-key-2026-v2,DEBUG
+2026-08-04 10:00:48,DEBUG,CartService,Item ID 88392 added to cart ID c-991823. Total count 3 items,DEBUG
+2026-08-04 10:00:49,DEBUG,CartService,Item ID 10948 added to cart ID c-109283. Total count 5 items,DEBUG
+2026-08-04 10:00:50,DEBUG,RecommendationEngine,Model inference completed for user 44102 in 18.4ms (embedding dim 512),DEBUG
+2026-08-04 10:00:51,DEBUG,RecommendationEngine,Model inference completed for user 99104 in 22.1ms (embedding dim 512),DEBUG
+2026-08-04 10:00:52,DEBUG,MetricsCollector,Scraped 48 metrics endpoints in 312ms. Exported to Prometheus pushgateway,DEBUG
+2026-08-04 10:00:53,DEBUG,MetricsCollector,Scraped 52 metrics endpoints in 280ms. Exported to Prometheus pushgateway,DEBUG
+2026-08-04 10:00:54,DEBUG,SearchIndexer,Indexed 500 documents into index products_v2 in 142ms,DEBUG
+2026-08-04 10:00:55,DEBUG,SearchIndexer,Indexed 1200 documents into index orders_v1 in 310ms,DEBUG
+2026-08-04 10:00:56,DEBUG,GraphQL,Query execution plan generated for operation GetCustomerDashboard in 1.2ms,DEBUG
+2026-08-04 10:00:57,DEBUG,GraphQL,Query execution plan generated for operation GetProductCatalog in 2.4ms,DEBUG
+2026-08-04 10:00:58,DEBUG,TelemetryService,App metrics flusher flushed 1500 spans to Jaeger collector at 10.244.0.5:14268,DEBUG
+2026-08-04 10:00:59,DEBUG,TelemetryService,App metrics flusher flushed 2200 spans to Jaeger collector at 10.244.0.5:14268,DEBUG
+2026-08-04 10:01:00,ERROR,KafkaCluster,Broker 3 failed to respond to heartbeats. Marking topic partition orders-0 as offline,ERROR
+2026-08-04 10:01:01,ERROR,KafkaCluster,Broker 1 failed to respond to heartbeats. Marking topic partition payments-2 as offline,ERROR
+2026-08-04 10:01:02,ERROR,Elasticsearch,ClusterHealthException: Cluster state is RED - 4 primary shards unassigned,ERROR
+2026-08-04 10:01:03,ERROR,Elasticsearch,ClusterHealthException: Cluster state is RED - 12 primary shards unassigned,ERROR
+2026-08-04 10:01:04,ERROR,MongoDB,WriteError: E11000 duplicate key error collection store.users index email_1,ERROR
+2026-08-04 10:01:05,ERROR,MongoDB,WriteError: E11000 duplicate key error collection store.orders index id_1,ERROR
+2026-08-04 10:01:06,ERROR,RabbitMQ,Channel closed abruptly by client 10.244.2.14:55420 due to channel exception PRECONDITION_FAILED,ERROR
+2026-08-04 10:01:07,ERROR,RabbitMQ,Channel closed abruptly by client 10.244.2.88:55410 due to channel exception PRECONDITION_FAILED,ERROR
+2026-08-04 10:01:08,ERROR,SparkMaster,Executor 14 on worker-02 lost: Container exited with code 137 (OOMKilled),ERROR
+2026-08-04 10:01:09,ERROR,SparkMaster,Executor 08 on worker-05 lost: Container exited with code 137 (OOMKilled),ERROR
+2026-08-04 10:01:10,ERROR,GRPCClient,RPC call /SearchService/FindNearby failed with status DEADLINE_EXCEEDED after 3000ms,ERROR
+2026-08-04 10:01:11,ERROR,GRPCClient,RPC call /UserService/GetProfile failed with status DEADLINE_EXCEEDED after 5000ms,ERROR
+2026-08-04 10:01:12,ERROR,VaultService,Token lookup failed: Vault token expired or revoked (HTTP 403 Forbidden),ERROR
+2026-08-04 10:01:13,ERROR,VaultService,Token lookup failed: Vault token expired or revoked (HTTP 403 Forbidden),ERROR
+2026-08-04 10:01:14,ERROR,NodeJS,UnhandledPromiseRejectionWarning: TypeError: Cannot read property id of undefined at server.js:84,ERROR
+2026-08-04 10:01:15,ERROR,NodeJS,UnhandledPromiseRejectionWarning: ReferenceError: req is not defined at app.js:112,ERROR
+2026-08-04 10:01:16,ERROR,AWS_S3,AccessDeniedException: User arn:aws:iam::123456789012:user/app-worker is not authorized s3:GetObject,ERROR
+2026-08-04 10:01:17,ERROR,AWS_S3,AccessDeniedException: User arn:aws:iam::123456789012:user/app-worker is not authorized s3:PutObject,ERROR
+2026-08-04 10:01:18,ERROR,CeleryWorker,Task tasks.generate_pdf_report raised exception FileNotFoundError /tmp/report.pdf,ERROR
+2026-08-04 10:01:19,ERROR,CeleryWorker,Task tasks.export_csv_data raised exception FileNotFoundError /tmp/data.csv,ERROR
+2026-08-04 10:01:20,INFO,NginxAccess,POST /api/v2/checkout HTTP/1.1 201 1240 182ms,INFO
+2026-08-04 10:01:21,INFO,NginxAccess,POST /api/v2/checkout HTTP/1.1 201 1180 165ms,INFO
+2026-08-04 10:01:22,INFO,Systemd,Started Docker Application Container Engine service in 1.42 seconds,INFO
+2026-08-04 10:01:23,INFO,Systemd,Started Kubernetes Kubelet Container Daemon in 0.88 seconds,INFO
+2026-08-04 10:01:24,INFO,InventoryService,Stock update received for SKU-8849-B: 450 units available in warehouse US-EAST-1,INFO
+2026-08-04 10:01:25,INFO,InventoryService,Stock update received for SKU-1092-A: 1200 units available in warehouse US-WEST-2,INFO
+2026-08-04 10:01:26,INFO,HDFS,Block blk_1073741825 replicated to 3 nodes successfully. Generation stamp 1002,INFO
+2026-08-04 10:01:27,INFO,HDFS,Block blk_1073741990 replicated to 3 nodes successfully. Generation stamp 1005,INFO
+2026-08-04 10:01:28,INFO,UserWorker,Password reset requested for user ID 77123. Email sent successfully,INFO
+2026-08-04 10:01:29,INFO,UserWorker,Password reset requested for user ID 88419. Email sent successfully,INFO
+2026-08-04 10:01:30,INFO,CronService,Scheduled job CleanExpiredSessions executed successfully in 4.2 seconds,INFO
+2026-08-04 10:01:31,INFO,CronService,Scheduled job RotateAuditLogs executed successfully in 12.1 seconds,INFO
+2026-08-04 10:01:32,INFO,KubernetesController,Scaling Deployment frontend-web from 3 to 6 replicas (HPA CPU target 80% reached),INFO
+2026-08-04 10:01:33,INFO,KubernetesController,Scaling Deployment backend-api from 5 to 10 replicas (HPA CPU target 85% reached),INFO
+2026-08-04 10:01:34,INFO,SessionStore,Session 99481 expired and purged from memory. Total active sessions 14201,INFO
+2026-08-04 10:01:35,INFO,SessionStore,Session 10928 expired and purged from memory. Total active sessions 14190,INFO
+2026-08-04 10:01:36,INFO,AuditLogger,User manager_1 modified role permissions for analyst_group at 10:02:24 UTC,INFO
+2026-08-04 10:01:37,INFO,AuditLogger,User admin_top modified network firewall rule allow_inbound at 10:05:00 UTC,INFO
+2026-08-04 10:01:38,WARNING,JVM,GC Allocation Failure PSYoungGen 1048000K->131072K 1982011K->1120000K 48.2ms,WARNING
+2026-08-04 10:01:39,WARNING,JVM,GC Concurrent Mark Sweep pause duration 120ms exceeded SLA threshold 100ms,WARNING
+2026-08-04 10:01:40,WARNING,APIGateway,Rate limiting enforced for client API key pk_live_4921: 105 req/min exceeds quota 100,WARNING
+2026-08-04 10:01:41,WARNING,APIGateway,Rate limiting enforced for client API key pk_live_9948: 220 req/min exceeds quota 200,WARNING
+2026-08-04 10:01:42,WARNING,CertificateManager,X509 certificate for ingress-tls expires in 7 days,WARNING
+2026-08-04 10:01:43,WARNING,CertificateManager,X509 certificate for internal-grpc-tls expires in 3 days,WARNING
+2026-08-04 10:01:44,WARNING,DiskCleaner,Temp folder /var/tmp usage reached 82%. Triggering automated purge policy,WARNING
+2026-08-04 10:01:45,WARNING,DiskCleaner,Temp folder /var/log usage reached 88%. Triggering automated purge policy,WARNING
+2026-08-04 10:01:46,WARNING,PostgreSQL,Process 4812 waiting for ShareLock on transaction 88192 for 5210ms,WARNING
+2026-08-04 10:01:47,WARNING,PostgreSQL,Process 9912 waiting for ExclusiveLock on transaction 10928 for 8100ms,WARNING
+2026-08-04 10:01:48,WARNING,LoadBalancer,Backend instance web-app-03 latency spike observed: average response time 2450ms,WARNING
+2026-08-04 10:01:49,WARNING,LoadBalancer,Backend instance api-worker-01 latency spike observed: average response time 3100ms,WARNING
+2026-08-04 10:01:50,WARNING,DNSResolver,Upstream DNS server 8.8.8.8 response delayed 780ms. Falling back to secondary 1.1.1.1,WARNING
+2026-08-04 10:01:51,WARNING,DNSResolver,Upstream DNS server 1.1.1.1 response delayed 920ms. Falling back to 9.9.9.9,WARNING
+2026-08-04 10:01:52,WARNING,RedisCluster,Cluster state warning: Node 10.0.1.12:6379 reporting high memory fragmentation ratio 2.41,WARNING
+2026-08-04 10:01:53,WARNING,RedisCluster,Cluster state warning: Node 10.0.1.15:6379 reporting high memory fragmentation ratio 2.85,WARNING

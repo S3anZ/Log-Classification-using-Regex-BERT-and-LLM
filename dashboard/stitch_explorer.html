@@ -1,0 +1,448 @@
+<!DOCTYPE html><html class="dark" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Log Explorer</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline": "#909097",
+                        "on-error-container": "#ffdad6",
+                        "inverse-primary": "#565e74",
+                        "on-secondary-fixed": "#00201c",
+                        "background": "#051424",
+                        "tertiary-fixed": "#e1e0ff",
+                        "primary-fixed": "#dae2fd",
+                        "primary-container": "#0f172a",
+                        "outline-variant": "#45464d",
+                        "on-secondary-container": "#004d44",
+                        "surface-bright": "#2c3a4c",
+                        "surface-container-high": "#1c2b3c",
+                        "primary": "#bec6e0",
+                        "on-tertiary": "#1000a9",
+                        "on-tertiary-fixed": "#07006c",
+                        "on-surface": "#d4e4fa",
+                        "on-primary": "#283044",
+                        "on-surface-variant": "#c6c6cd",
+                        "tertiary": "#c0c1ff",
+                        "surface-container-lowest": "#010f1f",
+                        "surface-dim": "#051424",
+                        "surface-variant": "#273647",
+                        "inverse-surface": "#d4e4fa",
+                        "surface-tint": "#bec6e0",
+                        "primary-fixed-dim": "#bec6e0",
+                        "tertiary-container": "#050060",
+                        "surface-container-low": "#0d1c2d",
+                        "on-error": "#690005",
+                        "on-primary-container": "#798098",
+                        "secondary-fixed-dim": "#3cddc7",
+                        "error": "#ffb4ab",
+                        "surface-container": "#122131",
+                        "on-primary-fixed-variant": "#3f465c",
+                        "on-tertiary-fixed-variant": "#2f2ebe",
+                        "tertiary-fixed-dim": "#c0c1ff",
+                        "on-primary-fixed": "#131b2e",
+                        "on-secondary-fixed-variant": "#005047",
+                        "secondary-container": "#03c6b2",
+                        "on-tertiary-container": "#6d70fb",
+                        "secondary-fixed": "#62fae3",
+                        "on-secondary": "#003731",
+                        "surface": "#051424",
+                        "error-container": "#93000a",
+                        "secondary": "#44e2cd",
+                        "on-background": "#d4e4fa",
+                        "inverse-on-surface": "#233143",
+                        "surface-container-highest": "#273647"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "input-padding-y": "8px",
+                        "container-padding": "24px",
+                        "input-padding-x": "12px",
+                        "grid-gutter": "20px",
+                        "base": "4px",
+                        "stack-gap": "16px"
+                    },
+                    "fontFamily": {
+                        "code-md": ["JetBrains Mono"],
+                        "label-caps": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "code-sm": ["JetBrains Mono"],
+                        "body-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "code-md": ["13px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "label-caps": ["11px", { "lineHeight": "12px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "display-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "code-sm": ["11px", { "lineHeight": "14px", "fontWeight": "400" }],
+                        "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #45464d;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen font-body-md antialiased selection:bg-secondary selection:text-on-secondary">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full flex flex-col w-64 bg-surface-container-lowest dark:bg-surface-container-lowest border-r border-outline-variant dark:border-outline-variant z-40 pb-4"><!-- Header -->
+<div class="flex items-center gap-3 p-4 border-b border-outline-variant dark:border-outline-variant mb-4">
+<div class="h-10 w-10 rounded-full bg-surface-variant overflow-hidden border border-outline-variant shrink-0">
+<img alt="User profile" class="w-full h-full object-cover" data-alt="A macro shot of a glowing fiber optic cable end, glowing bright teal and indigo in a completely black void, symbolizing active system data transfer." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZ4KNsRst70trXAP07W4HPw51IY04kZP4t4VwRlHFI6XM4y5N0PwO3kAxAPobNIkWlY6ImNQXMHDJ7UwL9K5mrIF0L3HNMmayAkiCQmHWIlg9e2H6M49cTLFVwGUDYnSjHmeK-bWxwaR1h-bP1IYbVuMV2eWDL5VQKSiwwE4DxapAEST4wc1ZVMuiBcA1qQVeP6AULq_hKFokvEH3kuyKOORzLLWUqQNGLr9RAzMtZn4ZkPzK98SBd">
+</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm font-bold text-on-surface dark:text-on-surface truncate">BERT Analysis</h2>
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">System Active</span>
+</div>
+</div>
+</div>
+<!-- Main Nav -->
+<nav class="flex-1 flex flex-col gap-1 px-3 items-stretch">
+<!-- Overview (Inactive) -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-md text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-variant dark:hover:bg-surface-variant transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">dashboard</span>
+<span class="font-body-md text-body-md">Overview</span>
+</a>
+<!-- Explorer (Active) -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-md text-secondary dark:text-secondary bg-surface-container-high dark:bg-surface-container-high border-r-2 border-secondary scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">list_alt</span>
+<span class="font-body-md text-body-md font-semibold">Explorer</span>
+</a>
+<!-- Performance (Inactive) -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-md text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-variant dark:hover:bg-surface-variant transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">analytics</span>
+<span class="font-body-md text-body-md">Performance</span>
+</a>
+<!-- Detail (Inactive) -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-md text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-variant dark:hover:bg-surface-variant transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">description</span>
+<span class="font-body-md text-body-md">Detail</span>
+</a>
+</nav>
+<!-- CTA -->
+<div class="px-4 py-4 mt-auto">
+<button class="w-full flex items-center justify-center gap-2 bg-secondary text-on-secondary py-2 rounded font-body-md text-body-md font-semibold hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined text-[20px]">upload</span>
+                Ingest Logs
+            </button>
+</div>
+<!-- Footer Nav -->
+<div class="flex flex-col gap-1 px-3 border-t border-outline-variant dark:border-outline-variant pt-4">
+<a class="flex items-center gap-3 px-3 py-2 rounded-md text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-variant dark:hover:bg-surface-variant transition-colors group" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors">settings</span>
+<span class="font-body-sm text-body-sm">Settings</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-md text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-variant dark:hover:bg-surface-variant transition-colors group" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors">help_outline</span>
+<span class="font-body-sm text-body-sm">Support</span>
+</a>
+</div></aside>
+<!-- TopAppBar -->
+<header class="fixed top-0 right-0 left-64 z-30 flex justify-between items-center h-16 bg-surface-dim dark:bg-surface-dim border-b border-outline-variant dark:border-outline-variant px-4">
+<div class="flex items-center gap-6">
+<h1 class="font-headline-md text-headline-md font-extrabold text-on-surface dark:text-on-surface">LogIntel BERT/LLM</h1>
+<nav class="hidden md:flex items-center gap-6 mt-1">
+<a class="font-label-caps text-label-caps text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary transition-opacity uppercase" href="#">Models</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary transition-opacity uppercase" href="#">Datasets</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary transition-opacity uppercase" href="#">Exports</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<!-- Search on Left (Relative to trailing actions) -->
+<div class="relative focus-within:ring-2 focus-within:ring-tertiary rounded">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">search</span>
+<input class="bg-surface-container-low border border-outline-variant rounded pl-9 pr-4 py-1.5 text-body-sm font-body-sm w-64 text-on-surface placeholder-on-surface-variant focus:outline-none focus:border-tertiary focus:bg-surface-container-highest transition-colors font-code-sm" placeholder="Query logs (regex enabled)..." type="text">
+</div>
+<!-- Trailing Icon Actions -->
+<div class="flex items-center gap-2"><button class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-surface-variant text-on-surface-variant hover:text-primary transition-colors" title="Toggle Theme">
+    <span class="material-symbols-outlined text-[20px]">light_mode</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-surface-variant text-on-surface-variant hover:text-primary transition-colors relative">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-surface-variant text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">wifi_tethering</span>
+</button>
+</div>
+<div class="w-px h-6 bg-outline-variant mx-1"></div>
+<!-- Trailing Primary Action & Profile -->
+<button class="border border-outline-variant text-secondary px-3 py-1.5 rounded font-label-caps text-label-caps uppercase hover:bg-surface-variant transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">rocket_launch</span>
+                Deploy Model
+            </button>
+<div class="w-8 h-8 rounded border border-outline-variant overflow-hidden ml-2">
+<img alt="Administrator Avatar" class="w-full h-full object-cover" data-alt="A minimalist abstract geometric portrait forming an administrator avatar, composed of sharp angular shapes in slate and muted primary colors." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5ExkgrwI_TKF-5I7YZpMZmh_XZcqp5jRZhtOGuSTlOuYFT4rB1rFXJK_gWmcV25L-aevo_7pU3Y5pI6V0nU8WVQFMlwjvPY3qsazX9CvpShXwldNZLEx4B0ixo1Ga8OnMXYjT_3jPh1qV2XTQHVtKVSnbhhV1f9WnibH9au6OD2D9uN3e-_Ewi-JawnUbFV94wOS-MPc4vy7QG22i9jPEHyPw-eGT1aldFC2XTTwxHHZ3MbKGhvFx">
+</div>
+</div>
+</header>
+<!-- Main Content: Log Explorer -->
+<main class="ml-64 mt-16 p-container min-h-[calc(100vh-64px)] bg-background flex flex-col gap-6">
+<!-- Controls & Filters Bar -->
+<section class="flex flex-wrap items-center justify-between gap-4 p-4 rounded-lg border border-outline-variant bg-surface-container-low shadow-sm">
+<!-- Filters Left -->
+<div class="flex items-center gap-3">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">filter_alt</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Filters</span>
+</div>
+<div class="w-px h-4 bg-outline-variant"></div>
+<!-- Filter: Model -->
+<div class="relative group">
+<select class="appearance-none bg-surface-container border border-outline-variant rounded pl-3 pr-8 py-1.5 font-body-sm text-body-sm text-on-surface hover:border-outline focus:outline-none focus:border-tertiary cursor-pointer">
+<option value="all">All Models</option>
+<option value="bert">BERT Base v2</option>
+<option value="llm">Llama-3-8B-LogInstruct</option>
+<option value="regex">Fallback Regex</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none text-[18px]">expand_more</span>
+</div>
+<!-- Filter: Label -->
+<div class="relative group">
+<select class="appearance-none bg-surface-container border border-outline-variant rounded pl-3 pr-8 py-1.5 font-body-sm text-body-sm text-on-surface hover:border-outline focus:outline-none focus:border-tertiary cursor-pointer">
+<option value="all">Classification: All</option>
+<option value="error">Error</option>
+<option value="warning">Warning</option>
+<option value="info">Info</option>
+<option value="debug">Debug</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none text-[18px]">expand_more</span>
+</div>
+<!-- Confidence Slider Mock -->
+<div class="flex items-center gap-2 bg-surface-container border border-outline-variant rounded px-3 py-1.5">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Min Conf</span>
+<input class="w-24 h-1 bg-surface-variant rounded-lg appearance-none cursor-pointer accent-secondary" max="100" min="0" type="range" value="75">
+<span class="font-code-sm text-code-sm text-secondary">75%</span>
+</div>
+</div>
+<!-- Controls Right -->
+<div class="flex items-center gap-3">
+<span class="font-code-sm text-code-sm text-on-surface-variant">Showing 1,024 records</span>
+<div class="flex border border-outline-variant rounded overflow-hidden">
+<button class="bg-surface-variant text-on-surface p-1 hover:bg-surface-container-high transition-colors" title="Compact View">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">view_headline</span>
+</button>
+<button class="bg-surface-container p-1 text-on-surface-variant hover:bg-surface-container-high transition-colors" title="Expanded View">
+<span class="material-symbols-outlined text-[20px]">view_agenda</span>
+</button>
+</div>
+<button class="text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1 font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[18px]">download</span>
+                    CSV
+                </button>
+</div>
+</section>
+<!-- Data Table Widget -->
+<section class="flex-1 rounded-lg border border-outline-variant bg-surface-dim overflow-hidden flex flex-col shadow-sm">
+<!-- Table Header -->
+<div class="grid grid-cols-[160px_1fr_120px_140px_120px_60px] gap-4 px-4 py-2 bg-surface-container-high border-b border-outline-variant items-center">
+<div class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider flex items-center gap-1 cursor-pointer hover:text-on-surface">
+                    Timestamp <span class="material-symbols-outlined text-[14px]">arrow_downward</span>
+</div>
+<div class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Raw Message</div>
+<div class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Classification</div>
+<div class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Model</div>
+<div class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Confidence</div>
+<div class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider text-right">Action</div>
+</div>
+<!-- Table Body (Scrollable) -->
+<div class="flex-1 overflow-y-auto custom-scrollbar bg-surface-dim">
+<!-- Row 1 (Error) -->
+<div class="grid grid-cols-[160px_1fr_120px_140px_120px_60px] gap-4 px-4 py-2 border-b border-outline-variant/30 items-center bg-surface-container-low hover:bg-surface-variant/50 transition-colors group">
+<div class="font-code-md text-code-md text-on-surface-variant whitespace-nowrap">2023-10-27 10:15:30.142</div>
+<div class="font-code-md text-code-md text-on-surface truncate">
+                        Exception in thread "main" java.lang.OutOfMemoryError: <span class="bg-error-container/20 text-error px-1 rounded">Java heap space</span>
+</div>
+<div>
+<span class="inline-flex items-center px-2 py-0.5 rounded font-label-caps text-label-caps uppercase bg-error-container/20 text-error border border-error/30">Error</span>
+</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">BERT Base v2</div>
+<div class="flex items-center gap-2">
+<div class="flex-1 h-1 bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-[98%]"></div>
+</div>
+<span class="font-code-sm text-code-sm text-secondary">98%</span>
+</div>
+<div class="text-right">
+<button class="text-on-surface-variant hover:text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</div>
+</div>
+<!-- Row 2 (Warning) -->
+<div class="grid grid-cols-[160px_1fr_120px_140px_120px_60px] gap-4 px-4 py-2 border-b border-outline-variant/30 items-center bg-surface-container hover:bg-surface-variant/50 transition-colors group">
+<div class="font-code-md text-code-md text-on-surface-variant whitespace-nowrap">2023-10-27 10:15:32.881</div>
+<div class="font-code-md text-code-md text-on-surface truncate">
+                        Deprecated API usage detected: Module <span class="bg-secondary-container/20 text-secondary px-1 rounded">auth.v1.login</span> is scheduled for removal in v3.0.
+                    </div>
+<div>
+<span class="inline-flex items-center px-2 py-0.5 rounded font-label-caps text-label-caps uppercase bg-secondary-container/20 text-secondary border border-secondary/30">Warning</span>
+</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Llama-3-8B-Log</div>
+<div class="flex items-center gap-2">
+<div class="flex-1 h-1 bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-[85%] opacity-80"></div>
+</div>
+<span class="font-code-sm text-code-sm text-secondary opacity-80">85%</span>
+</div>
+<div class="text-right">
+<button class="text-on-surface-variant hover:text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</div>
+</div>
+<!-- Row 3 (Info) -->
+<div class="grid grid-cols-[160px_1fr_120px_140px_120px_60px] gap-4 px-4 py-2 border-b border-outline-variant/30 items-center bg-surface-container-low hover:bg-surface-variant/50 transition-colors group">
+<div class="font-code-md text-code-md text-on-surface-variant whitespace-nowrap">2023-10-27 10:15:35.002</div>
+<div class="font-code-md text-code-md text-on-surface truncate text-on-surface-variant">
+                        Node worker-pool-alpha-04 initialized successfully in region us-east-1.
+                    </div>
+<div>
+<span class="inline-flex items-center px-2 py-0.5 rounded font-label-caps text-label-caps uppercase bg-primary-container/40 text-primary border border-primary/30">Info</span>
+</div>
+<div class="font-body-sm text-body-sm text-outline">Fallback Regex</div>
+<div class="flex items-center gap-2">
+<div class="flex-1 h-1 bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[100%] opacity-40"></div>
+</div>
+<span class="font-code-sm text-code-sm text-outline">100%</span>
+</div>
+<div class="text-right">
+<button class="text-on-surface-variant hover:text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</div>
+</div>
+<!-- Row 4 (Error) -->
+<div class="grid grid-cols-[160px_1fr_120px_140px_120px_60px] gap-4 px-4 py-2 border-b border-outline-variant/30 items-center bg-surface-container hover:bg-surface-variant/50 transition-colors group">
+<div class="font-code-md text-code-md text-on-surface-variant whitespace-nowrap">2023-10-27 10:15:42.119</div>
+<div class="font-code-md text-code-md text-on-surface truncate">
+                        [HTTP 502] Bad Gateway: upstream server disconnected. Target: <span class="bg-error-container/20 text-error px-1 rounded">payment-svc-cluster</span>
+</div>
+<div>
+<span class="inline-flex items-center px-2 py-0.5 rounded font-label-caps text-label-caps uppercase bg-error-container/20 text-error border border-error/30">Error</span>
+</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Llama-3-8B-Log</div>
+<div class="flex items-center gap-2">
+<div class="flex-1 h-1 bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-[92%]"></div>
+</div>
+<span class="font-code-sm text-code-sm text-secondary">92%</span>
+</div>
+<div class="text-right">
+<button class="text-on-surface-variant hover:text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</div>
+</div>
+<!-- Row 5 (Debug) -->
+<div class="grid grid-cols-[160px_1fr_120px_140px_120px_60px] gap-4 px-4 py-2 border-b border-outline-variant/30 items-center bg-surface-container-low hover:bg-surface-variant/50 transition-colors group">
+<div class="font-code-md text-code-md text-on-surface-variant whitespace-nowrap opacity-60">2023-10-27 10:15:45.000</div>
+<div class="font-code-md text-code-md text-on-surface truncate opacity-60">
+                        Payload trace: { "id": "req_88f912a", "bytes": 4096, "latency_ms": 12 }
+                    </div>
+<div>
+<span class="inline-flex items-center px-2 py-0.5 rounded font-label-caps text-label-caps uppercase bg-surface-variant text-on-surface-variant border border-outline-variant/50">Debug</span>
+</div>
+<div class="font-body-sm text-body-sm text-outline">Fallback Regex</div>
+<div class="flex items-center gap-2 opacity-50">
+<div class="flex-1 h-1 bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full bg-outline w-[100%]"></div>
+</div>
+<span class="font-code-sm text-code-sm text-outline">100%</span>
+</div>
+<div class="text-right">
+<button class="text-on-surface-variant hover:text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</div>
+</div>
+<!-- Repeated pattern to fill space for aesthetic -->
+<div class="grid grid-cols-[160px_1fr_120px_140px_120px_60px] gap-4 px-4 py-2 border-b border-outline-variant/30 items-center bg-surface-container hover:bg-surface-variant/50 transition-colors group">
+<div class="font-code-md text-code-md text-on-surface-variant whitespace-nowrap">2023-10-27 10:16:01.223</div>
+<div class="font-code-md text-code-md text-on-surface truncate">
+                        Connection timeout while establishing socket with database cluster <span class="bg-error-container/20 text-error px-1 rounded">db-shard-01</span>
+</div>
+<div>
+<span class="inline-flex items-center px-2 py-0.5 rounded font-label-caps text-label-caps uppercase bg-error-container/20 text-error border border-error/30">Error</span>
+</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">BERT Base v2</div>
+<div class="flex items-center gap-2">
+<div class="flex-1 h-1 bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-[89%]"></div>
+</div>
+<span class="font-code-sm text-code-sm text-secondary">89%</span>
+</div>
+<div class="text-right">
+<button class="text-on-surface-variant hover:text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Table Footer / Pagination -->
+<div class="bg-surface-container-high border-t border-outline-variant px-4 py-2 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Rows per page:</span>
+<select class="bg-transparent border-none text-on-surface font-code-sm focus:ring-0 cursor-pointer">
+<option>50</option>
+<option>100</option>
+<option>500</option>
+</select>
+</div>
+<div class="flex items-center gap-4">
+<span class="font-body-sm text-body-sm text-on-surface-variant">1-50 of 1,024</span>
+<div class="flex items-center gap-1">
+<button class="p-1 rounded hover:bg-surface-variant text-on-surface-variant disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined text-[20px]">chevron_left</span>
+</button>
+<button class="p-1 rounded hover:bg-surface-variant text-on-surface">
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+
+
+</body></html>

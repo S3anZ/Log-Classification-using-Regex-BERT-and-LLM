@@ -1,0 +1,391 @@
+<!DOCTYPE html><html class="dark" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Model Performance Comparison</title>
+<!-- Fonts & Icons -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "outline": "#909097",
+                    "on-error-container": "#ffdad6",
+                    "inverse-primary": "#565e74",
+                    "on-secondary-fixed": "#00201c",
+                    "background": "#051424",
+                    "tertiary-fixed": "#e1e0ff",
+                    "primary-fixed": "#dae2fd",
+                    "primary-container": "#0f172a",
+                    "outline-variant": "#45464d",
+                    "on-secondary-container": "#004d44",
+                    "surface-bright": "#2c3a4c",
+                    "surface-container-high": "#1c2b3c",
+                    "primary": "#bec6e0",
+                    "on-tertiary": "#1000a9",
+                    "on-tertiary-fixed": "#07006c",
+                    "on-surface": "#d4e4fa",
+                    "on-primary": "#283044",
+                    "on-surface-variant": "#c6c6cd",
+                    "tertiary": "#c0c1ff",
+                    "surface-container-lowest": "#010f1f",
+                    "surface-dim": "#051424",
+                    "surface-variant": "#273647",
+                    "inverse-surface": "#d4e4fa",
+                    "surface-tint": "#bec6e0",
+                    "primary-fixed-dim": "#bec6e0",
+                    "tertiary-container": "#050060",
+                    "surface-container-low": "#0d1c2d",
+                    "on-error": "#690005",
+                    "on-primary-container": "#798098",
+                    "secondary-fixed-dim": "#3cddc7",
+                    "error": "#ffb4ab",
+                    "surface-container": "#122131",
+                    "on-primary-fixed-variant": "#3f465c",
+                    "on-tertiary-fixed-variant": "#2f2ebe",
+                    "tertiary-fixed-dim": "#c0c1ff",
+                    "on-primary-fixed": "#131b2e",
+                    "on-secondary-fixed-variant": "#005047",
+                    "secondary-container": "#03c6b2",
+                    "on-tertiary-container": "#6d70fb",
+                    "secondary-fixed": "#62fae3",
+                    "on-secondary": "#003731",
+                    "surface": "#051424",
+                    "error-container": "#93000a",
+                    "secondary": "#44e2cd",
+                    "on-background": "#d4e4fa",
+                    "inverse-on-surface": "#233143",
+                    "surface-container-highest": "#273647"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "input-padding-y": "8px",
+                    "container-padding": "24px",
+                    "input-padding-x": "12px",
+                    "grid-gutter": "20px",
+                    "base": "4px",
+                    "stack-gap": "16px"
+            },
+            "fontFamily": {
+                    "code-md": ["JetBrains Mono"],
+                    "label-caps": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "headline-sm": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "code-sm": ["JetBrains Mono"],
+                    "body-sm": ["Inter"]
+            },
+            "fontSize": {
+                    "code-md": ["13px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "label-caps": ["11px", {"lineHeight": "12px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "headline-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "code-sm": ["11px", {"lineHeight": "14px", "fontWeight": "400"}],
+                    "body-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen font-body-md text-body-md overflow-x-hidden">
+<!-- SideNavBar -->
+<nav class="fixed left-0 top-0 h-full w-64 flex flex-col bg-surface-container-lowest dark:bg-surface-container-lowest border-r border-outline-variant dark:border-outline-variant z-40"><div class="p-container flex flex-col h-full">
+<!-- Header -->
+<div class="mb-8">
+<div class="flex items-center gap-3 mb-2">
+<div class="w-8 h-8 rounded-full bg-surface-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary">memory</span>
+</div>
+<div>
+<h1 class="font-headline-sm text-headline-sm font-bold text-on-surface">BERT Analysis</h1>
+<p class="font-body-sm text-body-sm text-secondary">System Active</p>
+</div>
+</div>
+</div>
+<!-- CTA -->
+<button class="w-full mb-8 bg-secondary/10 border border-secondary text-secondary py-2 rounded font-label-caps text-label-caps hover:bg-secondary/20 transition-colors">
+                Ingest Logs
+            </button>
+<!-- Navigation Tabs -->
+<div class="flex-1 flex flex-col gap-2">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-variant transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-md text-body-md">Overview</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-variant transition-colors" href="#">
+<span class="material-symbols-outlined">list_alt</span>
+<span class="font-body-md text-body-md">Explorer</span>
+</a>
+<!-- Active State: Performance -->
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-secondary bg-surface-container-high border-r-2 border-secondary scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined fill">analytics</span>
+<span class="font-body-md text-body-md font-semibold">Performance</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-variant transition-colors" href="#">
+<span class="material-symbols-outlined">description</span>
+<span class="font-body-md text-body-md">Detail</span>
+</a>
+</div>
+<!-- Footer Tabs -->
+<div class="mt-auto border-t border-outline-variant pt-4 flex flex-col gap-2">
+<a class="flex items-center gap-3 px-4 py-2 rounded text-on-surface-variant hover:bg-surface-variant transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-sm text-body-sm">Settings</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 rounded text-on-surface-variant hover:bg-surface-variant transition-colors" href="#">
+<span class="material-symbols-outlined">help_outline</span>
+<span class="font-body-sm text-body-sm">Support</span>
+</a>
+</div>
+</div></nav>
+<!-- TopAppBar -->
+<header class="fixed top-0 right-0 left-64 z-50 flex justify-between items-center px-container h-16 bg-surface-dim dark:bg-surface-dim border-b border-outline-variant dark:border-outline-variant max-w-7xl mx-auto">
+<div class="flex items-center gap-8">
+<span class="font-headline-md text-headline-md font-extrabold text-on-surface dark:text-on-surface tracking-tight">LogIntel BERT/LLM</span>
+<!-- Navigation Links -->
+<nav class="hidden md:flex gap-6">
+<!-- Active State for Context -->
+<a class="font-label-caps text-label-caps text-primary dark:text-primary border-b-2 border-primary pb-1" href="#">Models</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary transition-opacity" href="#">Datasets</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary transition-opacity" href="#">Exports</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<!-- Search placeholder -->
+<div class="relative focus-within:ring-2 focus-within:ring-tertiary rounded">
+<span class="material-symbols-outlined absolute left-2 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
+<input class="bg-surface-container border border-outline-variant rounded pl-8 pr-3 py-1.5 font-code-sm text-code-sm text-on-surface focus:outline-none w-48" placeholder="Search models..." type="text">
+</div>
+<!-- Trailing Icons -->
+<div class="flex gap-2 text-on-surface-variant"><button class="hover:text-primary transition-colors flex items-center" title="Toggle Theme">
+  <span class="material-symbols-outlined">light_mode</span>
+</button>
+<button class="hover:text-primary transition-colors"><span class="material-symbols-outlined">notifications</span></button>
+<button class="hover:text-primary transition-colors"><span class="material-symbols-outlined">wifi_tethering</span></button>
+</div>
+<!-- Primary Action -->
+<button class="bg-secondary text-on-secondary-fixed font-label-caps text-label-caps px-4 py-2 rounded hover:bg-secondary-fixed transition-colors">
+                Deploy Model
+            </button>
+<!-- Avatar -->
+<img alt="Administrator Avatar" class="w-8 h-8 rounded-full border border-outline-variant ml-2" data-alt="A small circular avatar placeholder image showing a generic user profile picture in a sleek digital environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOtLt4sMkpaXsNMF7iWeTOP2tO3UAz3c0Qf-0LgNcnepuZk_5I6dzeLcwcj4qN0xrycRCrJOKEPlv6zaLWzZtnlSc0JhqIipYoYI0C5J0hFpeKHqAdElWBHuI-7JTGpY_XnnbrBO0NL46HGk10WfGVB0NkC4FwXdJrSoA3uCmGe50uw9UDmMP8HrTkGcbJ9gEUFJy9tg2nU58UHzF999J_OTgHUgeKLAao37FxTWB14WECF2Z43wDr">
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-64 mt-16 p-container max-w-7xl mx-auto">
+<!-- Page Header -->
+<div class="mb-8 flex justify-between items-end">
+<div>
+<p class="font-label-caps text-label-caps text-secondary mb-1">EVALUATION METRICS</p>
+<h2 class="font-display-lg text-display-lg text-on-surface">Model Performance Comparison</h2>
+</div>
+<div class="flex gap-4">
+<div class="flex items-center gap-2 text-on-surface-variant font-code-sm text-code-sm">
+<span class="w-3 h-3 rounded-full bg-secondary inline-block"></span> BERT Base (v2.4)
+                </div>
+<div class="flex items-center gap-2 text-on-surface-variant font-code-sm text-code-sm">
+<span class="w-3 h-3 rounded-full bg-tertiary inline-block"></span> LLM-Turbo (v1.0)
+                </div>
+</div>
+</div>
+<!-- Dashboard Grid -->
+<div class="grid grid-cols-12 gap-grid-gutter">
+<!-- Radar Charts (Side by side) -->
+<div class="col-span-12 md:col-span-6 bg-surface-container border border-outline-variant rounded-lg relative group hover:shadow-[0_0_15px_rgba(99,102,241,0.1)] transition-all p-container">
+<div class="mb-4">
+<span class="font-label-caps text-label-caps text-on-surface-variant">BERT BASE (V2.4)</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mt-1">Classification Efficacy</h3>
+</div>
+<div class="h-64 flex items-center justify-center border-t border-outline-variant/30 mt-4 pt-4">
+<!-- Mock Radar Chart -->
+<div class="relative w-48 h-48 border border-outline-variant/50 rounded-full flex items-center justify-center">
+<div class="absolute w-32 h-32 border border-outline-variant/30 rounded-full"></div>
+<div class="absolute w-16 h-16 border border-outline-variant/20 rounded-full"></div>
+<!-- SVG polygon approximation for data -->
+<svg class="absolute inset-0 w-full h-full text-secondary opacity-40 fill-current" viewBox="0 0 100 100">
+<polygon points="50,10 85,35 75,80 25,75 10,40"></polygon>
+</svg>
+<svg class="absolute inset-0 w-full h-full text-secondary stroke-current fill-none" stroke-width="2" viewBox="0 0 100 100">
+<polygon points="50,10 85,35 75,80 25,75 10,40"></polygon>
+</svg>
+<!-- Labels -->
+<span class="absolute -top-6 text-xs text-on-surface-variant font-code-sm">Accuracy</span>
+<span class="absolute -right-8 top-1/2 text-xs text-on-surface-variant font-code-sm">Precision</span>
+<span class="absolute -bottom-6 text-xs text-on-surface-variant font-code-sm">F1-Score</span>
+<span class="absolute -left-6 top-1/2 text-xs text-on-surface-variant font-code-sm">Recall</span>
+</div>
+</div>
+</div>
+<div class="col-span-12 md:col-span-6 bg-surface-container border border-outline-variant rounded-lg relative group hover:shadow-[0_0_15px_rgba(99,102,241,0.1)] transition-all p-container">
+<div class="mb-4">
+<span class="font-label-caps text-label-caps text-on-surface-variant">LLM-TURBO (V1.0)</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mt-1">Classification Efficacy</h3>
+</div>
+<div class="h-64 flex items-center justify-center border-t border-outline-variant/30 mt-4 pt-4">
+<!-- Mock Radar Chart -->
+<div class="relative w-48 h-48 border border-outline-variant/50 rounded-full flex items-center justify-center">
+<div class="absolute w-32 h-32 border border-outline-variant/30 rounded-full"></div>
+<div class="absolute w-16 h-16 border border-outline-variant/20 rounded-full"></div>
+<!-- SVG polygon approximation for data -->
+<svg class="absolute inset-0 w-full h-full text-tertiary opacity-40 fill-current" viewBox="0 0 100 100">
+<polygon points="50,5 95,45 80,90 20,85 5,45"></polygon>
+</svg>
+<svg class="absolute inset-0 w-full h-full text-tertiary stroke-current fill-none" stroke-width="2" viewBox="0 0 100 100">
+<polygon points="50,5 95,45 80,90 20,85 5,45"></polygon>
+</svg>
+</div>
+</div>
+</div>
+<!-- Latency Line Chart -->
+<div class="col-span-12 bg-surface-container border border-outline-variant rounded-lg hover:shadow-[0_0_15px_rgba(99,102,241,0.1)] transition-all p-container">
+<div class="flex justify-between items-center mb-6">
+<div>
+<span class="font-label-caps text-label-caps text-on-surface-variant">LATENCY OVER TIME</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mt-1">Inference Latency (Last 24h)</h3>
+</div>
+<div class="text-right">
+<span class="block font-code-md text-code-md text-secondary">Avg: 42ms (BERT)</span>
+<span class="block font-code-md text-code-md text-tertiary">Avg: 185ms (LLM)</span>
+</div>
+</div>
+<!-- Mock Line Chart Area -->
+<div class="h-48 w-full relative border-l border-b border-outline-variant/50">
+<!-- Grid lines -->
+<div class="absolute inset-0 flex flex-col justify-between">
+<div class="w-full border-t border-outline-variant/20 h-0"></div>
+<div class="w-full border-t border-outline-variant/20 h-0"></div>
+<div class="w-full border-t border-outline-variant/20 h-0"></div>
+<div class="w-full border-t border-outline-variant/20 h-0"></div>
+</div>
+<!-- SVG lines -->
+<svg class="absolute inset-0 w-full h-full" preserveAspectRatio="none" viewBox="0 0 100 100">
+<!-- BERT (Fast, steady) -->
+<path d="M 0,85 Q 10,82 20,85 T 40,84 T 60,86 T 80,83 T 100,85" fill="none" stroke="#44e2cd" stroke-width="1.5"></path>
+<!-- LLM (Slower, variable) -->
+<path d="M 0,30 Q 15,20 30,40 T 60,25 T 85,45 T 100,35" fill="none" stroke="#c0c1ff" stroke-dasharray="2,2" stroke-width="1.5"></path>
+</svg>
+<!-- Axis Labels -->
+<div class="absolute -bottom-6 w-full flex justify-between text-on-surface-variant font-code-sm text-[10px]">
+<span class="">00:00</span>
+<span class="">06:00</span>
+<span class="">12:00</span>
+<span class="">18:00</span>
+<span class="">Now</span>
+</div>
+<div class="absolute -left-8 h-full flex flex-col justify-between text-on-surface-variant font-code-sm text-[10px] items-end pr-2">
+<span class="">300ms</span>
+<span class="">200ms</span>
+<span class="">100ms</span>
+<span class="">0ms</span>
+</div>
+</div>
+</div>
+<!-- Confusion Matrix -->
+<div class="col-span-12 lg:col-span-8 bg-surface-container border border-outline-variant rounded-lg">
+<div class="mb-6">
+<span class="font-label-caps text-label-caps text-on-surface-variant">DISAGREEMENT ANALYSIS</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mt-1">Confusion Matrix (Error Classes)</h3>
+</div>
+<div class="flex">
+<!-- Y Axis -->
+<div class="flex flex-col justify-center pr-4 border-r border-outline-variant/50 text-right space-y-[22px]">
+<span class="font-code-sm text-code-sm text-on-surface-variant">Auth Error</span>
+<span class="font-code-sm text-code-sm text-on-surface-variant">DB Timeout</span>
+<span class="font-code-sm text-code-sm text-on-surface-variant">Mem Leak</span>
+<span class="font-code-sm text-code-sm text-on-surface-variant">Network</span>
+</div>
+<!-- Matrix Grid -->
+<div class="pl-4 pb-4 border-b border-outline-variant/50">
+<div class="grid grid-cols-4 gap-1 w-full max-w-lg h-64">
+<!-- Row 1 -->
+<div class="bg-secondary/80 rounded flex items-center justify-center font-code-md text-surface-container-lowest font-bold">142</div>
+<div class="bg-secondary/10 rounded flex items-center justify-center font-code-md text-on-surface-variant">12</div>
+<div class="bg-secondary/5 rounded flex items-center justify-center font-code-md text-on-surface-variant">3</div>
+<div class="bg-secondary/20 rounded flex items-center justify-center font-code-md text-secondary">24</div>
+<!-- Row 2 -->
+<div class="bg-secondary/5 rounded flex items-center justify-center font-code-md text-on-surface-variant">4</div>
+<div class="bg-secondary/90 rounded flex items-center justify-center font-code-md text-surface-container-lowest font-bold">215</div>
+<div class="bg-secondary/10 rounded flex items-center justify-center font-code-md text-on-surface-variant">8</div>
+<div class="bg-secondary/5 rounded flex items-center justify-center font-code-md text-on-surface-variant">1</div>
+<!-- Row 3 -->
+<div class="bg-secondary/20 rounded flex items-center justify-center font-code-md text-secondary">18</div>
+<div class="bg-secondary/5 rounded flex items-center justify-center font-code-md text-on-surface-variant">2</div>
+<div class="bg-secondary/70 rounded flex items-center justify-center font-code-md text-surface-container-lowest font-bold">89</div>
+<div class="bg-secondary/30 rounded flex items-center justify-center font-code-md text-secondary">31</div>
+<!-- Row 4 -->
+<div class="bg-secondary/10 rounded flex items-center justify-center font-code-md text-on-surface-variant">9</div>
+<div class="bg-secondary/5 rounded flex items-center justify-center font-code-md text-on-surface-variant">0</div>
+<div class="bg-secondary/10 rounded flex items-center justify-center font-code-md text-on-surface-variant">5</div>
+<div class="bg-secondary/100 rounded flex items-center justify-center font-code-md text-surface-container-lowest font-bold">304</div>
+</div>
+<!-- X Axis -->
+<div class="flex justify-between mt-2 pt-2 text-center pl-2">
+<span class="w-full font-code-sm text-code-sm text-on-surface-variant">Auth Error</span>
+<span class="w-full font-code-sm text-code-sm text-on-surface-variant">DB Timeout</span>
+<span class="w-full font-code-sm text-code-sm text-on-surface-variant">Mem Leak</span>
+<span class="w-full font-code-sm text-code-sm text-on-surface-variant">Network</span>
+</div>
+<div class="text-center mt-4 font-label-caps text-label-caps text-secondary tracking-widest">
+                            PREDICTED CLASS
+                        </div>
+</div>
+<div class="flex flex-col justify-center ml-4">
+<div class="[writing-mode:vertical-rl] rotate-180 font-label-caps text-label-caps text-secondary tracking-widest">
+                            TRUE CLASS
+                        </div>
+</div>
+</div>
+</div>
+<!-- Summary Insights -->
+<div class="col-span-12 lg:col-span-4 flex flex-col gap-grid-gutter">
+<div class="bg-surface-container border border-outline-variant rounded-lg p-stack-gap flex-1">
+<span class="font-label-caps text-label-caps text-on-surface-variant">INSIGHT</span>
+<h4 class="font-headline-sm text-headline-sm text-on-surface mt-1 mb-4">Model Disagreement</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4">
+                         BERT and LLM disagree most frequently on <span class="text-tertiary font-code-sm px-1 py-0.5 bg-tertiary/10 rounded">Mem Leak</span> logs versus <span class="text-secondary font-code-sm px-1 py-0.5 bg-secondary/10 rounded">Network</span> timeouts.
+                     </p>
+<div class="h-[1px] w-full bg-outline-variant/30 my-4"></div>
+<div class="flex justify-between items-center">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Delta Severity</span>
+<span class="font-code-md text-code-md text-error flex items-center gap-1"><span class="material-symbols-outlined text-sm">trending_up</span> 14%</span>
+</div>
+</div>
+<div class="bg-surface-container border border-outline-variant rounded-lg p-stack-gap flex-1 flex items-center justify-center">
+<button class="w-full h-full border border-dashed border-outline-variant text-on-surface-variant hover:text-primary hover:border-primary transition-colors flex flex-col items-center justify-center gap-2 rounded bg-surface/50">
+<span class="material-symbols-outlined">add_chart</span>
+<span class="font-label-caps text-label-caps">Add Metric View</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+
+
+</body></html>
