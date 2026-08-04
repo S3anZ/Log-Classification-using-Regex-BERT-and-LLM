@@ -531,6 +531,5 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 - [Nivo Data Visualization](https://nivo.rocks/) for React charts
 - [Tailwind CSS](https://tailwindcss.com/) for styling
 
----
 
 
