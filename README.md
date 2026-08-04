@@ -342,7 +342,7 @@ The machine learning classification head was evaluated on held-out test splits a
 
 ```powershell
 # Clone repository
-git clone https://github.com/your-username/log-classification-bert.git
+git clone https://github.com/S3anZ/Log-Classification-using-Regex-BERT-and-LLM.git
 cd "Log Classification BERT"
 
 # Create virtual environment
