@@ -46,8 +46,6 @@
 - [🖼️ Visual Demos & Screenshots](#️-visual-demos--screenshots)
 - [📡 API Reference](#-api-reference)
 - [🗺️ Roadmap & Future Enhancements](#️-roadmap--future-enhancements)
-- [🤝 Contributing](#-contributing)
-- [📄 License & Acknowledgements](#-license--acknowledgements)
 
 ---
 
@@ -519,10 +517,6 @@ def classify_batch(payload: BatchLogRequest):
 - [ ] **Grafana Dashboard Visualization Plugin**
 
 ---
-
-## 📄 License & Acknowledgements
-
-This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
 
 ### Acknowledgements
 - [Hugging Face Transformers](https://huggingface.co/transformers/) for `SentenceTransformers`
